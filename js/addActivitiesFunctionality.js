@@ -1,83 +1,9 @@
-//adds text field for last option inside the first dropdown menu
-const addJobTextField = () =>
-{
-  const basicFieldSet = document.querySelector('.basic');
-  const otherTextField = document.createElement('input');
-  otherTextField.type = 'text';
-  otherTextField.id = 'other-title';
-  otherTextField.placeholder = "Your Job Role";
-  otherTextField.style.display = 'none';
-
-  basicFieldSet.appendChild(otherTextField);
-
-  basicFieldSet.addEventListener('change', (event) => {
-    if(event.target.tagName === 'SELECT')
-    {
-      otherTextField.style.display = 'none';
-      if (event.target.value === 'other')
-      {
-          otherTextField.style.display = 'block';
-      }
-    }
-  });
-}
-
-//for the t-shirt "color" menu, only displays the color options
-//that match the design selected in the "design" menu
-const addTshirtFunctionality = () =>
-{
-  const shirtFieldSet = document.querySelector('.shirt');
-  const colorDropdown = document.querySelector('#color');
-
-  //helper function
-  displayIndeces = (array, start, end, value) =>
-  {
-    for (let x = start ; x <= end ; x++ )
-    {
-      array[x].style.display = value;
-    }
-  }
-
-  //helper function
-  const adjustSelectMenu = (start, end) =>
-  {
-    colorDropdown.style.display = 'block';
-    displayIndeces(colorDropdown, 0, 6, 'none');
-    displayIndeces(colorDropdown, start, end, 'block');
-    colorDropdown.selectedIndex = start;
-  }
-
-  //on page load, hide the color dropdown
-  window.addEventListener('load', () =>
-  {
-    colorDropdown.style.display = 'none';
-  });
-
-  shirtFieldSet.addEventListener('change', (event) =>
-  {
-    if(event.target.tagName === 'SELECT')
-    {
-      if (event.target.value === 'js puns')
-      {
-        adjustSelectMenu(1,3);
-      }
-      else if (event.target.value === 'heart js')
-      {
-        adjustSelectMenu(4,6);
-      }
-      else
-      {
-        colorDropdown.style.display = 'none';
-      }
-    }
-  });
-}
-
 //does not allow the user to select
 //multiple activities at the same day and time.
 //also, displays activities total price.
 const addActivitiesFunctionality = () =>
 {
+  //gives class names to the checkboxes with conflicting times
   const updateCheckboxClasses = checkboxes_ =>
   {
     checkboxes_[1].className = 'one';
@@ -85,7 +11,7 @@ const addActivitiesFunctionality = () =>
     checkboxes_[3].className = 'three';
     checkboxes_[4].className = 'four';
   }
-
+  //creates and appends the total label
   const appendTotalLabel = fieldSet =>
   {
     const createLabel = (name, text, attr, value) =>
@@ -121,7 +47,7 @@ const addActivitiesFunctionality = () =>
     sum === 0 ? totalLabel.style.opacity = 0
               : totalLabel.style.opacity = 1;
   }
-
+  //greys out conflicting dates
   const checkForConflicts = () =>
   {
     const greyOutLabel = (checkboxA, checkboxB, label, color, index, opnlIndex ='') =>
@@ -169,14 +95,3 @@ const addActivitiesFunctionality = () =>
   appendTotalLabel(activitiesFieldSet);
   addEvent(checkboxes, activitiesFieldSet);
 }
-
-//on page load, start with the first field selected
-window.onload = () =>
-{
-  const nameField = document.querySelector('#name');
-  nameField.focus();
-}
-
-addJobTextField();
-addTshirtFunctionality();
-addActivitiesFunctionality();
