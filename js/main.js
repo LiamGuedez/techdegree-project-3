@@ -8,3 +8,4 @@ window.onload = () =>
 addJobTextField();
 addTshirtFunctionality();
 addActivitiesFunctionality();
+addPaymentFunctionality();

@@ -28,7 +28,7 @@ const addTshirtFunctionality = () =>
   {
     colorDropdown.style.display = 'none';
   });
-
+  //on option selection, hide the appropriate values
   shirtFieldSet.addEventListener('change', (event) =>
   {
     if(event.target.tagName === 'SELECT')
