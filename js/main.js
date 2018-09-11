@@ -9,3 +9,4 @@ addJobTextField();
 addTshirtFunctionality();
 addActivitiesFunctionality();
 addPaymentFunctionality();
+formValidation();

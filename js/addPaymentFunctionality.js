@@ -19,11 +19,11 @@ const addPaymentFunctionality = () =>
     }
   }
 
-  //on page load, disable the select option
-  //and hide the paypal and bitcoin sections
+  //on page load, make the select payment option unselectable
+  //and hide the paypal and bitcoin payment sections
   window.addEventListener('load', () =>
   {
-    document.querySelector('#payment [value=select_method]').disabled = true;
+    document.querySelector('#payment [value=select_method]').hidden = true;
     hideOrShowItems(null, null, 'none', 1, 2);
   });
 
