@@ -18,7 +18,7 @@
 
     <form action="index.html" method="post">
 
-      <fieldset class='basic'>
+      <fieldset id='basic'>
         <legend>Basic Info</legend>
 
         <label for="name">Name:</label>
@@ -74,7 +74,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="activities">
+      <fieldset id="activities">
         <legend>Register for Activities</legend>
         <label><input type="checkbox" name="all"> Main Conference — $200</label>
         <label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
@@ -85,7 +85,7 @@
         <label><input type="checkbox" name="npm"> npm Workshop — Wednesday 1pm-4pm, $100</label>
 
       </fieldset>
-      <fieldset>
+      <fieldset id="payment_fieldset">
         <legend>Payment Info</legend>
 
         <label for="payment">I'm going to pay with:</label>
@@ -151,13 +151,15 @@
       <button id='register' type="submit">Register</button>
 
     </form>
-    <!-- <button id='register' type="submit">Register</button> <!--to todelete --> -->
+
 	</div>
   <script src="js/addJobTextField.js"></script>
   <script src="js/addTshirtFunctionality.js"></script>
   <script src="js/addActivitiesFunctionality.js"></script>
   <script src="js/addPaymentFunctionality.js"></script>
   <script src="js/formValidation.js"></script>
+  <script src="js/formValidation2.js"></script>
   <script src="js/main.js"></script>
+
 </body>
 </html>

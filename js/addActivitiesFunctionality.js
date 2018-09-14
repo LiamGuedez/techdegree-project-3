@@ -66,7 +66,7 @@ const addActivitiesFunctionality = () =>
       }
     }
 
-    const labels = document.querySelectorAll('.activities label');
+    const labels = document.querySelectorAll('#activities label');
     const checkbox1 = document.querySelector('.one');
     const checkbox2 = document.querySelector('.two');
     const checkbox3 = document.querySelector('.three');
@@ -89,8 +89,8 @@ const addActivitiesFunctionality = () =>
     });
   }
 
-  const checkboxes = document.querySelectorAll('.activities label [type=checkbox]');
-  const activitiesFieldSet = document.querySelector('.activities');
+  const checkboxes = document.querySelectorAll('#activities label [type=checkbox]');
+  const activitiesFieldSet = document.querySelector('#activities');
   updateCheckboxClasses(checkboxes);
   appendTotalLabel(activitiesFieldSet);
   addEvent(checkboxes, activitiesFieldSet);

@@ -1,7 +1,7 @@
 //adds text field for last option inside the first dropdown menu
 const addJobTextField = () =>
 {
-  const basicFieldSet = document.querySelector('.basic');
+  const basicFieldSet = document.querySelector('#basic');
   const otherTextField = document.createElement('input');
   otherTextField.type = 'text';
   otherTextField.id = 'other-title';
