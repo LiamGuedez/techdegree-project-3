@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/errorMessages.css">
 </head>
 <body>
 	<div class="container">
@@ -100,17 +101,17 @@
 
           <div class="col-6 col">
             <label for="cc-num">Card Number:</label>
-        	  <input id="cc-num" name="user_cc-num" type="number" min="1000000000000" max="9999999999999999">
+        	  <input id="cc-num" name="user_cc-num" type="number" min="1000000000000" max="9999999999999999" required>
           </div>
 
           <div class="col-3 col">
             <label for="zip">Zip Code:</label>
-            <input id="zip" name="user_zip" type="number" min="10000" max="99999">
+            <input id="zip" name="user_zip" type="number" min="10000" max="99999" required>
           </div>
 
           <div class="col-3 col">
             <label for="cvv">CVV:</label>
-            <input id="cvv" name="user_cvv" type="number" min="100" max="999">
+            <input id="cvv" name="user_cvv" type="number" min="100" max="999" required>
           </div>
 
           <label for="exp-month">Expiration Date:</label>
@@ -153,12 +154,14 @@
     </form>
 
 	</div>
+  <script src="js/jquery-3-3-1.js"></script>
   <script src="js/addJobTextField.js"></script>
   <script src="js/addTshirtFunctionality.js"></script>
   <script src="js/addActivitiesFunctionality.js"></script>
   <script src="js/addPaymentFunctionality.js"></script>
+  <script src="js/errorMessagesHelpers.js"></script>
+  <script src="js/errorMessages.js"></script>
   <script src="js/formValidation.js"></script>
-  <script src="js/formValidation2.js"></script>
   <script src="js/main.js"></script>
 
 </body>

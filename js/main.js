@@ -10,3 +10,4 @@ addTshirtFunctionality();
 addActivitiesFunctionality();
 addPaymentFunctionality();
 formValidation();
+errorMessages();

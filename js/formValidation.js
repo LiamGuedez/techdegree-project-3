@@ -1,4 +1,4 @@
-const formValidation2 = () =>
+const formValidation = () =>
 {
   //returns true if it finds any true value inside array
   const anyTrueValue = (array, attribute = null) =>
@@ -48,6 +48,6 @@ const formValidation2 = () =>
         creditCard() && document.querySelector('#cvv').validity.rangeUnderflow                    // error 13: vin value too small
         ];
 
-    anyTrueValue(error) === true ? event.preventDefault() : alert('done');
+      anyTrueValue(error) === true ? event.preventDefault() : document.querySelector('form').submit();
     });
 }
