@@ -5,10 +5,9 @@ window.onload = () =>
   nameField.focus();
 }
 
-addOtherJobTextField();
+toggleOtherFieldDisplay();
 addTshirtFunctionality();
 addActivitiesFunctionality();
 addPaymentFunctionality();
 formValidation();
 errorMessages();
-progressiveEnhancement();
