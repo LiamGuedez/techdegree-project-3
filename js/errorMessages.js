@@ -20,38 +20,38 @@ const errorMessages = ()  =>
   appendErrorLabel([nameLabel, emailLabel, activitiesLegend, paymentLabel, creditCardLabel, zipLabel, cvvLabel]);
 
                   /*******************          NAME FIELD IS EMPTY          *******************/
-  nameField.addEventListener('keypress', () => {addEvent(nameLabel, nameField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-  nameField.addEventListener('focus', () => {addEvent(nameLabel, nameField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-  nameField.addEventListener('focusout', () => {addEvent(nameLabel, nameField, '', 'validity', 'valueMissing');});
-  registerButton.addEventListener('click', () => {addEvent(nameLabel, nameField, '            [Please fill out this field]', 'validity', 'valueMissing');});
+  nameField.addEventListener('input', () => {addEvent(nameLabel, (nameField.value === ''), '            [Please fill out this field]');});
+  nameField.addEventListener('focus', () => {addEvent(nameLabel, (nameField.value === ''), '            [Please fill out this field]');});
+  nameField.addEventListener('focusout', () => {addEvent(nameLabel, (nameField.value === ''), '',);});
+  registerButton.addEventListener('click', () => {addEvent(nameLabel, (nameField.value === ''), '            [Please fill out this field]');});
 
    /*******************          EMAIL FIELD IS EMPTY AND INVALID EMAIL FORMAT          *******************/
-  emailField.addEventListener('keypress', () =>
+  emailField.addEventListener('input', () =>
   {
-    emailField.validity.valueMissing?
-      addEvent(emailLabel, emailField, '            [Please fill out this field]', 'validity', 'valueMissing')  :
-      addEvent(emailLabel, emailField, '            [Please provide a vaild email]', 'validity', 'typeMismatch');
+    emailField.value === ''?
+      addEvent(emailLabel, true, '            [Please fill out this field]')  :
+      addEvent(emailLabel, !validateEmail(emailField.value), '            [Please provide a vaild email]');
   });
 
   emailField.addEventListener('focus', () =>
   {
-    emailField.validity.valueMissing?
-      addEvent(emailLabel, emailField, '            [Please fill out this field]', 'validity', 'valueMissing')  :
-      addEvent(emailLabel, emailField, '            [Please provide a vaild email]', 'validity', 'typeMismatch');
+    emailField.value === ''?
+      addEvent(emailLabel, true, '            [Please fill out this field]')  :
+      addEvent(emailLabel, !validateEmail(emailField.value), '            [Please provide a vaild email]');
   });
 
   emailField.addEventListener('focusout', () =>
   {
-    emailField.validity.valueMissing?
-      addEvent(emailLabel, emailField, '', 'validity', 'valueMissing')  :
-      addEvent(emailLabel, emailField, '', 'validity', 'typeMismatch');
+    emailField.value === ''?
+      addEvent(emailLabel, true, '            [Please fill out this field]')  :
+      addEvent(emailLabel, !validateEmail(emailField.value), '            [Please provide a vaild email]');
   });
 
   registerButton.addEventListener('click', () =>
   {
-    emailField.validity.valueMissing?
-      addEvent(emailLabel, emailField, '            [Please fill out this field]', 'validity', 'valueMissing')  :
-      addEvent(emailLabel, emailField, '            [Please provide a vaild email]', 'validity', 'typeMismatch');
+    emailField.value === ''?
+      addEvent(emailLabel, true, '            [Please fill out this field]')  :
+      addEvent(emailLabel, !validateEmail(emailField.value), '            [Please provide a vaild email]');
   });
 
                   /*******************          NO ACTIVITY BOX CHECKED          *******************/
@@ -71,47 +71,46 @@ const errorMessages = ()  =>
   registerButton.addEventListener('click', () =>{addEvent(paymentLabel, (paymentDropdown.selectedIndex === 0), '            [Please select a method of payment]');});
 
                 /*******************          CREDIT CARD FIELD IS EMPTY          *******************/
-  creditCardField.addEventListener('focus', () => {addEvent(creditCardLabel, creditCardField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-  creditCardField.addEventListener('focusout', () => {addEvent(creditCardLabel, creditCardField, '', 'validity', 'valueMissing');});
-  creditCardField.addEventListener('click', () => {addEvent(creditCardLabel, creditCardField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-  registerButton.addEventListener('click', () => {addEvent(creditCardLabel, creditCardField, '            [Please fill out this field]', 'validity', 'valueMissing');});
+  creditCardField.addEventListener('focus', () => {addEvent(creditCardLabel, (creditCardField.value === ''), '            [Please fill out this field]');});
+  creditCardField.addEventListener('focusout', () => {addEvent(creditCardLabel, (creditCardField.value === ''), '');});
+  creditCardField.addEventListener('click', () => {addEvent(creditCardLabel, (creditCardField.value === ''), '            [Please fill out this field]');});
+  registerButton.addEventListener('click', () => {addEvent(creditCardLabel, (creditCardField.value === ''), '            [Please fill out this field]');});
 
         /*******************          CREDIT CARD NUMBER IS TOO SMALL OR TOO BIG        *******************/
-creditCardField.addEventListener('keypress', () =>
+creditCardField.addEventListener('input', () =>
 {
-  if (creditCardField.validity.rangeUnderflow) addEvent(creditCardLabel, creditCardField, '            [13 to 16 digits]', 'validity', 'rangeUnderflow');
-  else if (creditCardField.validity.rangeOverflow) addEvent(creditCardLabel, creditCardField, '            [13 to 16 digits]', 'validity', 'rangeOverflow');
-  else addEvent(creditCardLabel, creditCardField, '', 'validity', 'rangeUnderflow') ;
+  ((creditCardField.value.length < 13) || (creditCardField.value.length > 16)) ?
+    addEvent(creditCardLabel, true, '            [13 to 16 digits]')           :
+    addEvent(creditCardLabel, true, '')                                        ;
 });
 
                   /*******************          ZIP CODE FIELD IS EMPTY          *******************/
-zipField.addEventListener('focus', () => {addEvent(zipLabel, zipField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-zipField.addEventListener('focusout', () => {addEvent(zipLabel, zipField, '', 'validity', 'valueMissing');});
-zipField.addEventListener('click', () => {addEvent(zipLabel, zipField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-registerButton.addEventListener('click', () => {addEvent(zipLabel, zipField, '            [Please fill out this field]', 'validity', 'valueMissing');});
+zipField.addEventListener('focus', () => {addEvent(zipLabel, (zipField.value === ''), '            Please fill');});
+zipField.addEventListener('focusout', () => {addEvent(zipLabel, (zipField.value === ''), '');});
+zipField.addEventListener('click', () => {addEvent(zipLabel, (zipField.value === ''), '            Please fill');});
+registerButton.addEventListener('click', () => {addEvent(zipLabel, (zipField.value === ''), '            Please fill');});
 
 
         /*******************          ZIP CODE ENTRY IS TOO SMALL OR TOO BIG        *******************/
-zipField.addEventListener('keypress', () =>
+zipField.addEventListener('input', () =>
 {
-  zipField.value.length != 4 ?
-    addEvent(zipLabel, zipField, '            [5 digits]', 'validity', 'rangeUnderflow') :
-    addEvent(zipLabel, zipField, '', 'validity', 'rangeOverflow') ;
+  zipField.value.length != 5 ?
+    addEvent(zipLabel, true, '            [5 digits]') :
+    addEvent(zipLabel, true, '') ;
 });
 
                   /*******************          CVV CARD FIELD IS EMPTY          *******************/
-cvvField.addEventListener('keypress', () => {addEvent(cvvLabel, cvvField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-cvvField.addEventListener('focus', () => {addEvent(cvvLabel, cvvField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-cvvField.addEventListener('focusout', () => {addEvent(cvvLabel, cvvField, '', 'validity', 'valueMissing');});
-cvvField.addEventListener('click', () => {addEvent(cvvLabel, cvvField, '            [Please fill out this field]', 'validity', 'valueMissing');});
-registerButton.addEventListener('click', () => {addEvent(cvvLabel, cvvField, '            [Please fill out this field]', 'validity', 'valueMissing');});
+cvvField.addEventListener('focus', () => {addEvent(cvvLabel, (cvvField.value === ''), '            Please fill');});
+cvvField.addEventListener('focusout', () => {addEvent(cvvLabel, (cvvField.value === ''), '');});
+cvvField.addEventListener('click', () => {addEvent(cvvLabel, (cvvField.value === ''), '            Please fill');});
+registerButton.addEventListener('click', () => {addEvent(cvvLabel, (cvvField.value === ''), '            Please fill');});
 
              /*******************          CVV ENTRY IS TOO SMALL OR TOO BIG        *******************/
-cvvField.addEventListener('keypress', () =>
+cvvField.addEventListener('input', () =>
 {
-cvvField.value.length != 2 ?
-addEvent(cvvLabel, cvvField, '            [3 digits]', 'validity', 'rangeUnderflow') :
-addEvent(cvvLabel, cvvField, '', 'validity', 'rangeOverflow') ;
+cvvField.value.length != 3 ?
+addEvent(cvvLabel, true, '            [3 digits]') :
+addEvent(cvvLabel, true, '') ;
 });
 
 }

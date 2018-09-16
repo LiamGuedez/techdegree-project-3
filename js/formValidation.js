@@ -32,20 +32,18 @@ const formValidation = () =>
     document.querySelector('#register').addEventListener('click', (event) =>
     {
       const error = [
-        document.querySelector('#name').validity.valueMissing,                                    //  error 0: empty name field
-        document.querySelector('#mail').validity.valueMissing,                                    //  error 1: empty email field
-        document.querySelector('#mail').validity.typeMismatch,                                    //  error 2: invalid email format
+        (document.querySelector('#name').value === ''),                                           //  error 0: empty name field
+        (document.querySelector('#mail').value === ''),                                           //  error 1: empty email field
+        !validateEmail(document.querySelector('#mail').value),                                     //  error 2: invalid email format
         !anyTrueValue(document.querySelectorAll('#activities label [type=checkbox]'), 'checked'), //  error 3: no checked checkboxes
-        document.querySelector('#payment').selectedIndex === 0,                                   //  error 4: no selection in payment dropdown
-        creditCard() && document.querySelector('#cc-num').validity.valueMissing,                  //  error 5: empty credit card field
-        creditCard() && document.querySelector('#cc-num').validity.rangeOverflow,                 //  error 6: credit card number too big
-        creditCard() && document.querySelector('#cc-num').validity.rangeUnderflow,                //  error 7: credit card number too small
-        creditCard() && document.querySelector('#zip').validity.valueMissing,                     //  error 8: empty zip code field
-        creditCard() && document.querySelector('#zip').validity.rangeOverflow,                    //  error 9: zip code value too big
-        creditCard() && document.querySelector('#zip').validity.rangeUnderflow,                   // error 10: zip code value too small
-        creditCard() && document.querySelector('#cvv').validity.valueMissing,                     // error 11: empty vin number field
-        creditCard() && document.querySelector('#cvv').validity.rangeOverflow,                    // error 12: vin value too big
-        creditCard() && document.querySelector('#cvv').validity.rangeUnderflow                    // error 13: vin value too small
+        (document.querySelector('#payment').selectedIndex === 0),                                 //  error 4: no selection in payment dropdown
+        creditCard() && (document.querySelector('#cc-num').value === ''),                        //  error 5: empty credit card field
+        creditCard() && ( (document.querySelector('#cc-num').value.length < 13) ||                //  error 6: incorrect credit card value
+                          (document.querySelector('#cc-num').value.length > 16)  ),
+        creditCard() && (document.querySelector('#zip').value === ''),                           //  error 7: empty zip code field
+        creditCard() && (document.querySelector('#zip').value.length !== 5),                      //  error 8: incorrect zip code
+        creditCard() && (document.querySelector('#cvv').value === ''),                           //  error 9: empty vin number field
+        creditCard() && (document.querySelector('#cvv').value.length !== 3),                      // error 10: incorrect vin value
         ];
 
       anyTrueValue(error) === true ? event.preventDefault() : document.querySelector('form').submit();

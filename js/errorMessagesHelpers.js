@@ -12,6 +12,13 @@ const appendErrorLabel = (array) =>
   }
 }
 
+//checks if email is in valid email form
+const validateEmail = email =>
+{
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 //returns true if it finds no checked boxes inside the array
 const noCheckedBoxes = array =>
 {
@@ -21,21 +28,9 @@ const noCheckedBoxes = array =>
   return state;
 }
 
-//returns either an attribute or a value
-//depending on the null value of attr1 and attr2
-const attributeOrValue = (passedItem, attr1, attr2) =>
-{
-  let variable;
-  (attr1 !== null) && (attr2 !== null) ?
-    variable = passedItem[attr1][attr2] :
-    variable = passedItem;
-  return variable;
-}
-
 //changes the style of the error label if an event is triggered
-const addEvent = (label, attOrVal, labelText, attr1 = null, attr2 = null) =>
+const addEvent = (label, value, labelText) =>
 {
-    let item = attributeOrValue(attOrVal, attr1, attr2);
-    item === true ? label.querySelector('label').textContent = labelText :
+    value === true ? label.querySelector('label').textContent = labelText :
                     label.querySelector('label').textContent = '';
 }

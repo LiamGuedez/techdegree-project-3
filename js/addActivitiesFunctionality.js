@@ -66,7 +66,10 @@ const addActivitiesFunctionality = () =>
       }
     }
 
-    const labels = document.querySelectorAll('#activities label');
+    const helper = document.querySelectorAll('#activities label');
+    let labels = [];
+    for (let x = 1 ; x < helper.length ; x++)
+      labels.push(helper[x]);
     const checkbox1 = document.querySelector('.one');
     const checkbox2 = document.querySelector('.two');
     const checkbox3 = document.querySelector('.three');
